@@ -751,7 +751,9 @@ app.post('/consultaSaldoBloqueado',
                             
                             regLog(" Data "+dt)
                             retorno = {
-                                   "Contas": arrayContas,                                   
+                                          "listaContas" : {
+                                                 "contas": arrayContas,                                   
+                                          }
                             }
 
        
