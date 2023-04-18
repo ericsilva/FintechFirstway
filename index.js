@@ -741,7 +741,7 @@ app.post('/consultaSaldoBloqueado',
                                           "valorSaldoBloqueado": 10*(10+i)*(i*2+1),
                                           "status": "Ok",
                                           "descricaoErro": "",
-                                          "listabloqueios": {
+                                          "listaBloqueios": {
                                                  "bloqueios" : [itemBloqueio]
                                           }
                                           
