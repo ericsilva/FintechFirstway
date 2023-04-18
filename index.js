@@ -720,9 +720,9 @@ app.post('/consultaSaldoBloqueado',
                             let arrayBloqueios=[]
                                                         
                             for(let i=0;i<res_data.listaContas.contas.length;i++){
-                                   if(res_data.listaContas.contas[i].numeroAgencia!=""){
+                                   /*if(res_data.listaContas.contas[i].numeroAgencia!=""){
                                           throw new Error(" numeroAgencia nao eh valida! "+res_data.listaContas.contas[i].numeroAgencia)
-                                   }
+                                   }*/
                                    const itemBloqueio = {
                                           "codigoProtocolo": "10203040-"+i,
                                           "codigoSequenciaProtocolo": "1",
