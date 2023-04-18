@@ -699,9 +699,10 @@ app.post('/consultaSaldoBloqueado',
 
               if(hasAuthorization(req)){
                      regLog("- consultaSaldoBloqueado -------------------------");
-                     const res_data = req.body;
+                     regLog(req.body);
+                     const res_data = req.body;                     
                      let retorno=" ";
-                     regLog("------------------------")
+                     regLog("------------------------");                     
                      let dt = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss")
                      try {
        
@@ -717,37 +718,40 @@ app.post('/consultaSaldoBloqueado',
                             }
                             let arrayContas=[]
                             let arrayBloqueios=[]
-                            
-                            for(let i=0;i<res_data.listaConta.length;i++){
-                                   if(res_data.listaConta[i].numeroAgencia!=""){
-                                          throw new Error(" numeroAgencia nao eh valida! "+res_data.listaConta[i].numeroAgencia)
+                                                        
+                            for(let i=0;i<res_data.listaContas.contas.length;i++){
+                                   if(res_data.listaContas.contas[i].numeroAgencia!=""){
+                                          throw new Error(" numeroAgencia nao eh valida! "+res_data.listaContas.contas[i].numeroAgencia)
                                    }
-                                   const itemConta = {
-                                          "numeroAgencia": res_data.listaConta[i].numeroAgencia,
-                                          "numeroConta": res_data.listaConta[i].numeroConta,
-                                          "valorSaldo": 100*i,
-                                          "valorSaldoBloqueado": 100*i,
-                                          "status": "Ok",
-                                          "descricaoErro": ""
-                                   }
-                                   arrayContas.push(itemConta)
                                    const itemBloqueio = {
                                           "codigoProtocolo": "10203040-"+i,
                                           "codigoSequenciaProtocolo": "1",
-                                          "cnpjBaseSolicitacao": "19019000119",
+                                          "cnpjBaseSolicitacao": "59588111000103",
                                           "identificacadorLegado": "88888",
-                                          "valorEfetivo": 10*i,
+                                          "valorEfetivado": 10*(10+i)*(i*2+1),
                                           "qtdeAtivosEfetivada": "1",
                                           "dataHoraEXCC": dt,
                                           "numeroDiasResgates": "0"
                                    }
-                                   arrayBloqueios.push(itemBloqueio)
+
+                                   const itemConta = {
+                                          "numeroAgencia": res_data.listaContas.contas[i].numeroAgencia,
+                                          "numeroConta": res_data.listaContas.contas[i].numeroConta,
+                                          "valorSaldo": 10*(10+i)*(i*2+1),
+                                          "valorSaldoBloqueado": 10*(10+i)*(i*2+1),
+                                          "status": "Ok",
+                                          "descricaoErro": "",
+                                          "listabloqueios": {
+                                                 "bloqueios" : [itemBloqueio]
+                                          }
+                                          
+                                   }
+                                   arrayContas.push(itemConta)                                   
                             }
                             
                             regLog(" Data "+dt)
                             retorno = {
-                                   "Contas": arrayContas,
-                                   "Bloqueios":arrayBloqueios
+                                   "Contas": arrayContas,                                   
                             }
 
        
