@@ -891,7 +891,9 @@ app.get('/confirmOperation',
 (req, resp)=> {
 
        //if(hasAuthorization(req)){
+			  regLog(JSON.stringify(req.body))
               regLog("- Params ("+JSON.stringify(req.params)+")");
+			  
               regLog("- confirmOperation get -------------------------");
               const res_data = req.body;
               let retorno=" ";
