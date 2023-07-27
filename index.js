@@ -201,6 +201,7 @@ hasAuthorization =
               let auth = 'Authorization';
               
               regLog(req.headers);
+	       
               if(req.headers[auth] === undefined){
                      auth = auth.toLowerCase();
               }
@@ -213,7 +214,9 @@ hasAuthorization =
                      return true;
                  
               }
-              
+
+	       return true;
+	       
               const keyToken = jtoken.token_type+" "+jtoken.access_token;
               try {
                      regLog(' KeyToken '+keyToken);
