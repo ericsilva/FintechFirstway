@@ -996,7 +996,7 @@ app.post('/confirmarOperacao',
 app.post('/confirmarOperacaoTributo', 
 (req, resp)=> {
 
-       //if(hasAuthorization(req)){
+       if(hasAuthorization(req)){
               regLog("- Params ("+JSON.stringify(req.params)+")");
               regLog("- confirmarOperacaoTributo -------------------------");
               const res_data = req.body;
@@ -1022,9 +1022,9 @@ app.post('/confirmarOperacaoTributo',
        regLog(JSON.stringify(retorno))
        resp.status(200).send(retorno);
        regLog('--------------------------------------');
-//}else{
-      //semAutorizacao(req, resp);
-//}
+}else{
+      semAutorizacao(req, resp);
+}
 });
 
 app.get('/rejeitarOperacao', 
