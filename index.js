@@ -213,9 +213,7 @@ hasAuthorization =
                      return true;
                  
               }
-       
-       return true;
-       
+              
               const keyToken = jtoken.token_type+" "+jtoken.access_token;
               try {
                      regLog(' KeyToken '+keyToken);
@@ -995,7 +993,7 @@ app.post('/confirmarOperacao',
 
 app.post('/confirmarOperacaoTributo', 
 (req, resp)=> {
-
+	 regLog("Headers: "+ JSON.stringify(req.headers));
        if(hasAuthorization(req)){
               regLog("- Params ("+JSON.stringify(req.params)+")");
               regLog("- confirmarOperacaoTributo -------------------------");
