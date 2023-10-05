@@ -1052,18 +1052,27 @@ app.get('/rejeitarOperacao',
               try {
                      regLog(" Data "+dt)
                      regLog(JSON.stringify(res_data))
-                     retorno = {
-                            "retornoConfirmacao": 1
-                     }
 
-             
+		      if(res_data.clientIdentifier) {
+			      retorno = {
+				      "confirmationReturn": 1
+			      }
+		      } else {
+	                     retorno = {
+	                            "retornoConfirmacao": 1
+	                     }
+		      }             
               }catch( e){
               	regLog(e);
-              	
-                     retorno = {
-                            "retornoConfirmacao": 1
-                     }
-
+			if(res_data.clientIdentifier) {
+			      retorno = {
+				      "confirmationReturn": 1
+			      }
+		      	} else {
+	                     retorno = {
+	                            "retornoConfirmacao": 1
+	                     }
+			}
               }
        regLog('--------------------------------------');
        regLog(JSON.stringify(retorno))
