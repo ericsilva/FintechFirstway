@@ -1352,6 +1352,29 @@ app.post('/solicitarTransferenciaJudicial',
 }
 });
 
+const tokenExternal = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImRlZmF1bHRfc3NsX2tleSJ9.ew0KICAiaXNzIjogImh0dHBzOi8vYXBpLXVhdC5iYW5jb3ZvdG9yYW50aW0uY29tLmJyOjQ0MyIsDQogICJpYXQiOjE3NDI0OTc0NTgsDQogICJzdWIiOiIiLA0KICAiYXVkIjoibDd4eGY3ZDM1Mjk1NTE4ZTRkZWI4YWUzZDNjYmM1NGNhMzdjIiwNCiAgImV4cCI6MTc0MjUwMTA1OCwNCiAgImp0aSI6ImFhODEyZjgzLTc5ZjgtNGE4Ni1iNDM3LTBlM2VmMTZmMDcxMSIsDQogICJ0b2tlbl9kZXRhaWxzIjogew0KICAgICJzY29wZSI6Im9vYiIsDQogICAgImV4cGlyZXNfaW4iOjM2MDAsDQogICAgInRva2VuX3R5cGUiOiJCZWFyZXIiLA0KICAgICJ1c2VybmFtZSI6IiIsDQogICAgInJvbGVzIjoiIg0KICB9DQp9.xEAhheRwW6uBcxlUDOmna31dZOse81bRhU_29EVS7bK6wV1DYT8plfkre2mH9WjNSS6xfHBe-44FVMTqqSoTXo0_dZI_-ZooWDQ2ZeBv5RYCYT_hZwqLHV5eMdOww50yNfF7KoCiMkTeReMaW7TPXy9CIccZSzEM0vJxUy-N8tpi51gl6zfbWmq4w7tilKmwzmBCOQEthbROGAF29hRNg-zsHUy4jPtPWCBBvh4VVDO4YoJF9DbcmQceNDKP_KEOFDn5YJb2-qsHde3reh9fAu17-vmGWIelIqBtXN_Zv9BQuwUBt51LTVB9LjaCEUoWsM0S-cnXwZopUm4XSooLyA";
+
+app.post('/token-external', (req, res) => {
+
+       regLog(`Endpoint token notification external: client_id: ${req.body.client_id} client_secret: ${req.body.client_secret} grant_type: ${req.body.grant_type}`);
+
+       return res.json(
+              {
+                     "access_token": tokenExternal,
+                     "token_type": "Bearer",
+                     "expires_in": 3600,
+                     "scope": "oob"
+              }).send();
+
+});
+
+app.post('/notification-external', (req, res) => {
+
+       regLog(`Endpoint notification external: id: ${req.body.transactionInfo.id} paymenId: ${req.body.paymentId}`);
+
+       return res.status(201).send();
+});
+
 
 app.listen(port, ()=>{
        regLog("Listem "+port)
