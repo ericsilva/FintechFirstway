@@ -888,6 +888,40 @@ app.post('/notificar',
 }
 });
 
+app.post('/notificar/pix', 
+(req, resp)=> {
+
+       if(hasAuthorization(req)){
+              regLog("- notificar PIX -------------------------");
+              const res_data = req.body;
+              let retorno=" ";
+              let dt = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss")
+              try {
+                     regLog(" Data "+dt)
+                     regLog(JSON.stringify(res_data))
+                     retorno = {
+                            "codigoRetorno": 200,
+                            "descricaoMensagemRetorno": "OK"
+                     }
+
+             
+              }catch( e){
+                     retorno = {
+                            "codigoRetorno": 400,
+                            "descricaoMensagemRetorno": "Erro:"+e.Error
+                     }
+
+              }
+       regLog('--------------------------------------');
+       regLog(JSON.stringify(retorno))
+       resp.status(200).send(retorno);
+       regLog('--------------------------------------');
+}else{
+      semAutorizacao(req, resp);
+}
+});
+
+
 app.get('/confirmOperation', 
 (req, resp)=> {
 
